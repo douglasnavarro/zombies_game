@@ -9,6 +9,11 @@ function drawZombie(zombie) {
   circle(zombie.x, zombie.y, 35);
 }
 
+function moveZombie(zombie) {
+  return p5.Vector.fromAngle(zombie.heading(), zombie.mag() - 1);
+}
+
+
 function setup() {
   createCanvas(400, 400);
   survivor = p5.Vector.fromAngle(radians(45), 50);
@@ -16,6 +21,8 @@ function setup() {
 }
 
 function draw() {
+  zombie = moveZombie(zombie);
+  
   background(220);
   translate(width/2, height/2);
   drawSurvivor(survivor);
