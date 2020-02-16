@@ -27,6 +27,10 @@ function moveZombie(zombie) {
   return p5.Vector.fromAngle(zombie.heading(), zombie.mag() - 1);
 }
 
+function moveZombies(zombies) {
+  return zombies.map(zombie => moveZombie(zombie));
+}
+
 // p5Js functions
 
 function setup() {
@@ -36,7 +40,7 @@ function setup() {
 }
 
 function draw() {
-  gameZombies = [moveZombie(gameZombies[0]), moveZombie(gameZombies[1])];
+  gameZombies = moveZombies(gameZombies);
 
   background(220);
   translate(width / 2, height / 2);
