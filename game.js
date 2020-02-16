@@ -1,5 +1,5 @@
 let gameSurvivor;
-let gameZombie;
+let gameZombies;
 
 function drawSurvivor(survivor) {
   line(0, 0, survivor.x, survivor.y);
@@ -7,6 +7,10 @@ function drawSurvivor(survivor) {
 
 function drawZombie(zombie) {
   circle(zombie.x, zombie.y, 35);
+}
+
+function drawZombies(zombies) {
+  zombies.forEach(zombie => drawZombie(zombie));
 }
 
 // Pure functions
@@ -28,14 +32,14 @@ function moveZombie(zombie) {
 function setup() {
   createCanvas(400, 400);
   gameSurvivor = createSurvivor();
-  gameZombie = createZombie();
+  gameZombies = [createZombie(), createZombie(120)];
 }
 
 function draw() {
-  gameZombie = moveZombie(gameZombie);
+  gameZombies = [moveZombie(gameZombies[0]), moveZombie(gameZombies[1])];
 
   background(220);
   translate(width / 2, height / 2);
   drawSurvivor(gameSurvivor);
-  drawZombie(gameZombie);
+  drawZombies(gameZombies);
 }
